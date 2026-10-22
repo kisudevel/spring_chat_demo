@@ -1,0 +1,21 @@
+package com.sucoding.chatdemo.mapper;
+
+import com.sucoding.chatdemo.dto.member.MemberCreateRequest;
+import com.sucoding.chatdemo.dto.member.MemberMeResponse;
+import com.sucoding.chatdemo.model.Member;
+import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
+
+@Mapper(componentModel = "spring")
+public interface MemberMapper {
+
+    @Mapping(target = "id", ignore = true)
+    @Mapping(target = "createdAt", ignore = true)
+    @Mapping(target = "role", ignore = true)
+    @Mapping(target = "password", ignore = true)
+    @Mapping(target = "tokenInvalidBefore", ignore = true)
+    @Mapping(target = "deletedAt", ignore = true)
+    Member toEntity(MemberCreateRequest memberCreateRequest);
+
+    MemberMeResponse toMeResponse(Member member);
+}
